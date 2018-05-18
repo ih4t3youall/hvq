@@ -1,7 +1,5 @@
 package ar.com.sourcesistemas.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.com.sourcesistemas.model.Expense;
 import ar.com.sourcesistemas.model.User;
 import ar.com.sourcesistemas.service.UserService;
 
@@ -71,17 +68,6 @@ public class LoginController {
 		modelAndView.addObject("currentUser", user);
 		// modelAndView.setViewName("user/home");
 		return modelAndView;
-	}
-
-	@RequestMapping(value = "/verGastos", method = RequestMethod.GET)
-	public ModelAndView verGastos() {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
-		List<Expense> expenses = user.getExpenses();
-		ModelAndView modelAndView = new ModelAndView("user/expenses");
-		modelAndView.addObject("expenses", expenses);
-		return modelAndView;
-
 	}
 
 }

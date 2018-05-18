@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
@@ -47,10 +46,6 @@ public class User {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles;
-
-	@OneToMany(mappedBy = "user") // PONER EL NOMBRE DE VARIABLE DE LOS users EN expense, FOREIGN KEY DE expense
-									// (EL ALIAS)
-	private List<Expense> expenses;
 
 	public int getId() {
 		return id;
@@ -106,14 +101,6 @@ public class User {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
-	}
-
-	public List<Expense> getExpenses() {
-		return expenses;
-	}
-
-	public void setExpenses(List<Expense> expenses) {
-		this.expenses = expenses;
 	}
 
 }
