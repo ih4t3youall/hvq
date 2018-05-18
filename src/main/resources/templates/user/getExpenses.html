@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Ver mis gastos</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+
+
+
+		<div class="panel-group" style="margin-top: 40px">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<span th:utext="${'Bienvenido ' + currentUser.name}"></span>
+				</div>
+				<div class="panel-body">
+					<img
+						src="https://i.pinimg.com/originals/5c/d4/63/5cd463f3c2da16a7e5b8cbcb96382128.jpg"
+						class="img-responsive center-block" width="400" height="400"
+						alt="Beer" />
+				</div>
+
+
+
+				<form class="form-inline" th:action="@{/expenseByCategory}"
+					method="get">
+
+					<div class="col-xs-12 col-sm-6 col-lg-5">
+						<span>Filtar por categoria</span> <select name="category">
+							<option value=""></option>
+							<option th:each="category : ${categories}"
+								th:value="${category.id}" th:utext="${category.description}" />
+						</select>
+					</div>
+
+
+
+					<div class="col-xs-12 col-sm-6 col-lg-6" align="right">
+						<span>Filtrar por mes</span> 
+						<select name="month">
+							<option value=""></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+					</div>
+
+					<button class="btn  btn-secondary btn-xs col-lg-1" name="filterExpense"
+						type="Submit">Filtrar</button>
+				</form>
+				<h1 style="margin-top: 100px">Mis Gastos</h1>
+				<table class="table" >
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Acciones</th>
+							<th scope="col">Descripcion</th>
+							<th scope="col">Fecha</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Categoria</th>
+							<th scope="col">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="expense : ${expenses}">
+							<td><a th:href="@{/deleteExpense(id=${expense.id})}" class="btn btn-sm btn-danger">Eliminar gasto</a></td>
+							<td th:text="${expense.description}"></td>
+							<td th:text="${expense.date}"></td>
+							<td th:text="${expense.price}"></td>
+							<td th:text="${expense.categoryId}"></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>
+							<td>
+							<td>
+							<td>
+							<td>
+							<td th:text ="${total}"></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<form th:action="@{/user/home}" method="get">
+					<button class="btn btn-md btn-warning btn-block" name="inicio"
+						type="Submit">Volver</button>
+				</form>
+				<form th:action="@{/logout}" method="get">
+					<button class="btn btn-md btn-danger btn-block" name="registration"
+						type="Submit">Logout</button>
+				</form>
+
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
