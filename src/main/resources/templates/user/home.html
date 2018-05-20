@@ -12,43 +12,62 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
-</script>
+<script
+	src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+
+<script type="text/javascript" th:href="@{/js/simpleModal.js}"></script>
+<script type="text/javascript" th:href="@{/js/jquery.simplemodal.js}"></script>
+
+<script
+	src="http://localhost:8084/js/simpleModal.js"></script>
+<script
+	src="http://localhost:8084/js/jquery.simplemodal.js"></script>
+
+<link rel="stylesheet"
+	href="http://localhost:8084/css/simpleModal.css"/>
+<link rel="stylesheet"
+	href="http://localhost:8084/css/demo.css"/>
+
+
+	
 <script type="text/javascript">
-function showQRIntro() {
-	  return confirm("Use your camera to take a picture of a QR code.");
+	function showQRIntro() {
+		return confirm("Use your camera to take a picture of a QR code.");
 	}
 
-function openQRCamera(node) {
-	  var reader = new FileReader();
-	  reader.onload = function() {
-	    node.value = "";
-	    qrcode.callback = function(res) {
-	      if(res instanceof Error) {
-	        alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
-	      } else {
-	        node.parentNode.previousElementSibling.value = res;
-	      }
-	    };
-	    qrcode.decode(reader.result);
-	  };
-	  reader.readAsDataURL(node.files[0]);
+	function openQRCamera(node) {
+		var reader = new FileReader();
+		reader.onload = function() {
+			node.value = "";
+			qrcode.callback = function(res) {
+				if (res instanceof Error) {
+					alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+				} else {
+					node.parentNode.previousElementSibling.value = res;
+				}
+			};
+			qrcode.decode(reader.result);
+		};
+		reader.readAsDataURL(node.files[0]);
 	}
 
+	function addExpense() {
 
+	}
 </script>
 <style>
 .qrcode-text {
-  padding-right: 1.7em;
-  margin-right: 0;
-  vertical-align: middle;
+	padding-right: 1.7em;
+	margin-right: 0;
+	vertical-align: middle;
 }
 
-.qrcode-text + .qrcode-text-btn {
-  width: 1.7em;
-  margin-left: -1.7em;
-  vertical-align: middle;
+.qrcode-text+.qrcode-text-btn {
+	width: 1.7em;
+	margin-left: -1.7em;
+	vertical-align: middle;
 }
+
 .qrcode-text-btn {
 	display: inline-block;
 	height: 1em;
@@ -83,10 +102,10 @@ function openQRCamera(node) {
 						class="img-responsive center-block" width="400" height="400"
 						alt="Beer" />
 				</div>
-				<form th:action="@{/expense}" method="get">
-					<button class="btn btn-md btn-warning btn-block" name="addExpense"
-						type="Submit">Agregar un gasto</button>
-				</form>
+
+				<button class="btn btn-md btn-warning btn-block" name="addExpense"
+					onClick="addExpense()">+</button>
+
 				<form th:action="@{/getExpenses}" method="get">
 					<button class="btn btn-md btn-warning btn-block" name="addExpense"
 						type="Submit">Ver mis gastos</button>
@@ -98,23 +117,15 @@ function openQRCamera(node) {
 			</div>
 		</div>
 	</div>
-	<form th:action="@{/camera}" method="get">
-		<button class="btn btn-md btn-warning btn-block" name="addExpense"
-			type="Submit">Aabrir camara</button>
-	</form>
 
 	<!-- 
 		prueba camara	
 			
 			 -->
 	<input type=text class=qrcode-text>
-	<label class=qrcode-text-btn> 
-	<input type=file
-       accept="image/*"
-       capture=environment
-       onclick="return showQRIntro();"
-       onchange="openQRCamera(this);"
-       tabindex=-1>
+	<label class=qrcode-text-btn> <input type=file accept="image/*"
+		capture=environment onclick="return showQRIntro();"
+		onchange="openQRCamera(this);" tabindex=-1>
 	</label>
 	<!-- 
 fin		prueba camara	
