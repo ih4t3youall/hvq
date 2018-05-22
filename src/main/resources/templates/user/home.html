@@ -40,12 +40,17 @@
 		};
 		reader.readAsDataURL(node.files[0]);
 	}
+	function modalClear(){
+		$('.modal').empty();
+		
+	}
 	function openModal() {
+		modalClear();
 		$.ajax({
 			type : "GET",
 			traditional : true,
 			url : "getModal.htm",
-			data : "modalName=modalProducto",
+			data : "modalName=expenseModal",
 			success : function(response) {
 				console.log(response);
 				$('.modal').append(response);
@@ -58,9 +63,6 @@
 
 	}
 
-	function addExpense() {
-
-	}
 </script>
 <style>
 .qrcode-text {

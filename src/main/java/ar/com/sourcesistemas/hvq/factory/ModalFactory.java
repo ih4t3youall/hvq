@@ -8,24 +8,24 @@ public class ModalFactory {
 
 	public final String MODAL_FOLDER = "modal";
 	public final String SEPARATOR = "/";
+	public String[] values = { "martin", "florencia", "paradise", "carla", "juan", "lequerica" };
 
 	public ModelAndView getModal(String modalName) {
 
 		ModelAndView mav = new ModelAndView(MODAL_FOLDER + SEPARATOR + modalName);
-		String[] values = new String[6];
-		values[0] = "martin";
-		values[1] = "florencia";
-		values[2] = "paradise";
-		values[3] = "carla";
-		values[4] = "juan";
-		values[5] = "lequerica";
+		populate(modalName, mav);
+		return mav;
+	}
 
-		for (String nose : values) {
-			System.out.println(nose);
+	public void populate(String modalName, ModelAndView mav) {
+
+		switch (modalName) {
+		case "expenseModal":
+			mav.addObject("countries", values);
+
+			break;
 		}
 
-		mav.addObject("countries", values);
-		return mav;
 	}
 
 }
