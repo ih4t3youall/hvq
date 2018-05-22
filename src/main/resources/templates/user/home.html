@@ -45,6 +45,7 @@
 			type : "GET",
 			traditional : true,
 			url : "getModal.htm",
+			data : "modalName=expenseModal",
 			success : function(response) {
 				console.log(response);
 				$('.modal').append(response);
