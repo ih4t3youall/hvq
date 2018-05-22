@@ -45,7 +45,7 @@
 			type : "GET",
 			traditional : true,
 			url : "getModal.htm",
-			data : "modalName=expenseModal",
+			data : "modalName=modalProducto",
 			success : function(response) {
 				console.log(response);
 				$('.modal').append(response);
@@ -111,7 +111,7 @@
 				</div>
 
 				<button class="btn btn-md btn-warning btn-block" name="addExpense"
-					onClick="addExpense()">+</button>
+					onClick="openModal()">+</button>
 
 				<form th:action="@{/getExpenses}" method="get">
 					<button class="btn btn-md btn-warning btn-block" name="addExpense"
@@ -124,8 +124,6 @@
 			</div>
 		</div>
 	</div>
-	<button type="button" class="btn btn-primary" data-toggle="modal"
-		onClick="openModal()">Launch demo modal</button>
 
 	<!-- modal -->
 	<div class="modal" tabindex="-1" role="dialog"></div>
