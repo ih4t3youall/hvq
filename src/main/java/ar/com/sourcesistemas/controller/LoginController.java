@@ -51,6 +51,17 @@ public class LoginController {
 		}
 	}
 
+	@RequestMapping(value = "/user/test", method = RequestMethod.GET)
+	public ModelAndView test() {
+		return new ModelAndView("user/test");
+
+	}
+
+	@RequestMapping(value = "/user/getModal", method = RequestMethod.GET)
+	public ModelAndView getModal() {
+		return new ModelAndView("modal/ExpenseModal");
+	}
+
 	@RequestMapping(value = "/user/home", method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView("user/home");

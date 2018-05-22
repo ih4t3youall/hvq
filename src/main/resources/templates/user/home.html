@@ -15,21 +15,11 @@
 <script
 	src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 
-<script type="text/javascript" th:href="@{/js/simpleModal.js}"></script>
-<script type="text/javascript" th:href="@{/js/jquery.simplemodal.js}"></script>
-
-<script
-	src="http://localhost:8084/js/simpleModal.js"></script>
-<script
-	src="http://localhost:8084/js/jquery.simplemodal.js"></script>
-
-<link rel="stylesheet"
-	href="http://localhost:8084/css/simpleModal.css"/>
-<link rel="stylesheet"
-	href="http://localhost:8084/css/demo.css"/>
 
 
-	
+
+
+
 <script type="text/javascript">
 	function showQRIntro() {
 		return confirm("Use your camera to take a picture of a QR code.");
@@ -49,6 +39,22 @@
 			qrcode.decode(reader.result);
 		};
 		reader.readAsDataURL(node.files[0]);
+	}
+	function openModal() {
+		$.ajax({
+			type : "GET",
+			traditional : true,
+			url : "getModal.htm",
+			success : function(response) {
+				console.log(response);
+				$('.modal').append(response);
+				$('.modal').modal();
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+
 	}
 
 	function addExpense() {
@@ -117,7 +123,12 @@
 			</div>
 		</div>
 	</div>
+	<button type="button" class="btn btn-primary" data-toggle="modal"
+		onClick="openModal()">Launch demo modal</button>
 
+	<!-- modal -->
+	<div class="modal" tabindex="-1" role="dialog"></div>
+	<!--fin modal -->
 	<!-- 
 		prueba camara	
 			
@@ -131,12 +142,6 @@
 fin		prueba camara	
 			
 			 -->
-
-
-
-
-
-
 
 </body>
 </html>
