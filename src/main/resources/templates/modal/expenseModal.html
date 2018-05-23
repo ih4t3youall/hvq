@@ -77,43 +77,45 @@ input[type=submit] {
 }
 </style>
 <script th:inline="javascript">
-	function agregarProducto() {
+	function agregarProduct() {
 	var expense = new Object();	
-expense.name = $('#myInput').val();
-expense.price = $("#price").val();
-expense.qty = $("#quantity").val();
-alert(expense);
-addExpense(expense);
+	expense.name = $('#myInput').val();
+	expense.price = $("#price").val();
+	expense.qty = $("#quantity").val();
+	expense.total = expense.qty*expense.price;
+	addExpense(expense);
 
 	}
-function getProductPriceByName(productName){
-	$.ajax({
-		type : "GET",
-		traditional : true,
-		url : "getProductPriceByName.htm",
-		data : "productName="+productName,
-		success : function(response) {
-$("#price").val(response);
+function getProductPriceByName(event){
+	setTimeout(function() {
 
-		},
-		error : function(e) {
-			console.log(e);
-		}
-	});
+	productName =event.srcElement.value;
+		$.ajax({
+			type : "GET",
+			traditional : true,
+			url : "getProductPriceByName.htm",
+			data : "productName="+productName,
+			success : function(response) {
+	$("#price").val(response);
+
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		}); 
+		}, 100);
+
 	
 	
 	
 }
 function addExpense(expense){
-alert("pase por aca: "+generateExpenseHtml(expense));
 	$("#productList").append(generateExpenseHtml(expense));
 	
 }
 function generateExpenseHtml(expense){
-	
 
-return '<li class="list-group-item">'.concat(expense.name).concat(' cantidad: ').concat(expense.qty).concat(' precio: ').concat(expense.price).concat('</li>');
-	
+return '<tr><th scope="row">'.concat($('tr').length ).concat('</th>').concat('<td>').concat(expense.name).concat('</td>').concat('<td>').concat(expense.price).concat('</td>').concat('<td>').concat(expense.qty).concat('</td><td>').concat(expense.total).concat('</td></tr>');
 }
 
 	function autocomplete(inp, arr) {
@@ -173,8 +175,8 @@ return '<li class="list-group-item">'.concat(expense.name).concat(' cantidad: ')
 									/* on focus out event listener go and look for the price */
 									inp.addEventListener("focusout", function(event){
 										
-									product =event.srcElement.value;
-									getProductPriceByName(product);	
+// 									product =event.srcElement.value;
+									getProductPriceByName(event);	
 										
 										
 									});
@@ -281,7 +283,7 @@ return '<li class="list-group-item">'.concat(expense.name).concat(' cantidad: ')
 				</div>
 
 				<input type="button" value="Agregar Producto"
-					onClick="agregarProducto()">
+					onClick="agregarProduct()">
 			</form>
 
 		</div>
