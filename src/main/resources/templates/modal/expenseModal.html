@@ -78,8 +78,12 @@ input[type=submit] {
 </style>
 <script th:inline="javascript">
 	function agregarProducto() {
-
-		alert("button clicked");
+	var expense = new Object();	
+expense.name = $('#myInput').val();
+expense.price = $("#price").val();
+expense.qty = $("#quantity").val();
+alert(expense);
+addExpense(expense);
 
 	}
 function getProductPriceByName(productName){
@@ -100,6 +104,18 @@ $("#price").val(response);
 	
 	
 }
+function addExpense(expense){
+alert("pase por aca: "+generateExpenseHtml(expense));
+	$("#productList").append(generateExpenseHtml(expense));
+	
+}
+function generateExpenseHtml(expense){
+	
+
+return '<li class="list-group-item">'.concat(expense.name).concat(' cantidad: ').concat(expense.qty).concat(' precio: ').concat(expense.price).concat('</li>');
+	
+}
+
 	function autocomplete(inp, arr) {
 		/*the autocomplete function takes two arguments,
 		the text field element and an array of possible autocompleted values:*/
@@ -264,7 +280,7 @@ $("#price").val(response);
 					</select>
 				</div>
 
-				<input type="submit" value="Agregar Producto"
+				<input type="button" value="Agregar Producto"
 					onClick="agregarProducto()">
 			</form>
 

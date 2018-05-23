@@ -11,14 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ProductController {
 
-	private static final Map<String, Integer> prices = new HashMap<String, Integer>();
-
-	public ProductController() {
-		init();
-	}
+	private Map<String, Integer> prices = new HashMap<String, Integer>();
 
 	@RequestMapping(value = "/user/getProductPriceByName", method = RequestMethod.GET)
 	public @ResponseBody String getProructPriceByName(String productName) {
+		init();
 		return prices.get(productName).toString();
 
 	}
