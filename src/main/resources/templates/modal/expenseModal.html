@@ -13,11 +13,13 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script
 	src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
-	
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-	
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
 <style>
 * {
 	box-sizing: border-box;
@@ -88,7 +90,9 @@ input[type=submit] {
 	expense.price = $("#price").val();
 	expense.qty = $("#quantity").val();
 	expense.total = expense.qty*expense.price;
+	if(expense.name != null && expense.name != ""){
 	addExpense(expense);
+	}
 
 	}
 function getProductPriceByName(event){

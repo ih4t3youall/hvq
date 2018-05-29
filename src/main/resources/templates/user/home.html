@@ -53,13 +53,18 @@
 	function confirmDeleteRow(row){
 	$.confirm({
 	    title: 'Confirmar!',
+	    animationBounce: 2.5,
 	    content: 'Desea eliminar?',
 	    buttons: {
-	        confirm: function () {
+	        borrar: function () {
 					deleteRow(row);
 	        },
 	        cancel: function () {
 	            $.alert('Cancelado!');
+	        },
+	        edit : function(){
+	            $.alert('Editado!');
+	        	
 	        }
 	    }
 	});
