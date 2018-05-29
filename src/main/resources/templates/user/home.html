@@ -44,6 +44,10 @@
 		$('.modal').empty();
 
 	}
+	function deleteRow(something) {
+		other = $(something).closest('tr').remove();
+		console.log(other);
+	}
 	function openModal() {
 		modalClear();
 		$.ajax({
@@ -120,7 +124,7 @@
 							</h4>
 						</div>
 						<div id="collapse1" class="panel-collapse collapse">
-							<ul class="list-group" >
+							<ul class="list-group">
 								<table class="table">
 									<thead>
 										<tr>
@@ -129,6 +133,7 @@
 											<th scope="col">Precio</th>
 											<th scope="col">Cantidad</th>
 											<th scope="col">Total</th>
+											<th scope="col">Delete</th>
 										</tr>
 									</thead>
 									<tbody id="productList">

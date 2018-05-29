@@ -115,7 +115,7 @@ function addExpense(expense){
 }
 function generateExpenseHtml(expense){
 
-return '<tr><th scope="row">'.concat($('tr').length ).concat('</th>').concat('<td>').concat(expense.name).concat('</td>').concat('<td>').concat(expense.price).concat('</td>').concat('<td>').concat(expense.qty).concat('</td><td>').concat(expense.total).concat('</td></tr>');
+return '<tr><th scope="row">'.concat($('tr').length ).concat('</th>').concat('<td>').concat(expense.name).concat('</td>').concat('<td>').concat(expense.price).concat('</td>').concat('<td>').concat(expense.qty).concat('</td><td>').concat(expense.total).concat('</td><td><input class="btn btn-md btn-danger btn-block" value="x" type="button" onClick="deleteRow(this)"/></td></td></tr>');
 }
 
 	function autocomplete(inp, arr) {
