@@ -103,7 +103,7 @@ function getProductPriceByName(event){
 				console.log(e);
 			}
 		}); 
-		}, 100);
+		}, 200);
 
 	
 	
@@ -111,11 +111,24 @@ function getProductPriceByName(event){
 }
 function addExpense(expense){
 	$("#productList").append(generateExpenseHtml(expense));
+	calculateTotal();
+	
+}
+function calculateTotal(){
+	var calculation = 0;
+	$(".total").each(function(index,item){
+		
+		calculation = +calculation + +item.innerHTML;
+		
+	});
+$("#total").empty("");
+$("#total").append(calculation);
+	
 	
 }
 function generateExpenseHtml(expense){
 
-return '<tr><th scope="row">'.concat($('tr').length ).concat('</th>').concat('<td>').concat(expense.name).concat('</td>').concat('<td>').concat(expense.price).concat('</td>').concat('<td>').concat(expense.qty).concat('</td><td>').concat(expense.total).concat('</td></tr>');
+return '<tr><th scope="row">'.concat($('tr').length ).concat('</th>').concat('<td>').concat(expense.name).concat('</td>').concat('<td>').concat(expense.price).concat('</td>').concat('<td>').concat(expense.qty).concat('</td><td class="total">').concat(expense.total).concat('</td></tr>');
 }
 
 	function autocomplete(inp, arr) {
@@ -283,7 +296,7 @@ return '<tr><th scope="row">'.concat($('tr').length ).concat('</th>').concat('<t
 				</div>
 
 				<input type="button" value="Agregar Producto"
-					onClick="agregarProduct()">
+					onClick="agregarProduct()" data-dismiss="modal">
 			</form>
 
 		</div>
