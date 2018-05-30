@@ -13,6 +13,13 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script
 	src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
 <style>
 * {
 	box-sizing: border-box;
@@ -77,59 +84,7 @@ input[type=submit] {
 }
 </style>
 <script th:inline="javascript">
-	function agregarProduct() {
-	var expense = new Object();	
-	expense.name = $('#myInput').val();
-	expense.price = $("#price").val();
-	expense.qty = $("#quantity").val();
-	expense.total = expense.qty*expense.price;
-	addExpense(expense);
 
-	}
-function getProductPriceByName(event){
-	setTimeout(function() {
-
-	productName =event.srcElement.value;
-		$.ajax({
-			type : "GET",
-			traditional : true,
-			url : "getProductPriceByName.htm",
-			data : "productName="+productName,
-			success : function(response) {
-	$("#price").val(response);
-
-			},
-			error : function(e) {
-				console.log(e);
-			}
-		}); 
-		}, 200);
-
-	
-	
-	
-}
-function addExpense(expense){
-	$("#productList").append(generateExpenseHtml(expense));
-	calculateTotal();
-	
-}
-function calculateTotal(){
-	var calculation = 0;
-	$(".total").each(function(index,item){
-		
-		calculation = +calculation + +item.innerHTML;
-		
-	});
-$("#total").empty("");
-$("#total").append(calculation);
-	
-	
-}
-function generateExpenseHtml(expense){
-
-return '<tr><th scope="row">'.concat($('tr').length ).concat('</th>').concat('<td>').concat(expense.name).concat('</td>').concat('<td>').concat(expense.price).concat('</td>').concat('<td>').concat(expense.qty).concat('</td><td class="total">').concat(expense.total).concat('</td></tr>');
-}
 
 	function autocomplete(inp, arr) {
 		/*the autocomplete function takes two arguments,
