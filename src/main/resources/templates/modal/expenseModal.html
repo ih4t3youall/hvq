@@ -84,48 +84,7 @@ input[type=submit] {
 }
 </style>
 <script th:inline="javascript">
-	function agregarProduct() {
-	var expense = new Object();	
-	expense.name = $('#myInput').val();
-	expense.price = $("#price").val();
-	expense.qty = $("#quantity").val();
-	expense.total = expense.qty*expense.price;
-	if(expense.name != null && expense.name != ""){
-	addExpense(expense);
-	}
 
-	}
-function getProductPriceByName(event){
-	setTimeout(function() {
-
-	productName =event.srcElement.value;
-		$.ajax({
-			type : "GET",
-			traditional : true,
-			url : "getProductPriceByName.htm",
-			data : "productName="+productName,
-			success : function(response) {
-	$("#price").val(response);
-
-			},
-			error : function(e) {
-				console.log(e);
-			}
-		}); 
-		}, 100);
-
-	
-	
-	
-}
-function addExpense(expense){
-	$("#productList").append(generateExpenseHtml(expense));
-	
-}
-function generateExpenseHtml(expense){
-
-return '<tr><th scope="row">'.concat($('tr').length ).concat('</th>').concat('<td>').concat(expense.name).concat('</td>').concat('<td>').concat(expense.price).concat('</td>').concat('<td>').concat(expense.qty).concat('</td><td>').concat(expense.total).concat('</td><td><input class="btn btn-md btn-danger btn-block" value="x" type="button" onClick="confirmDeleteRow(this)"/></td></td></tr>');
-}
 
 	function autocomplete(inp, arr) {
 		/*the autocomplete function takes two arguments,

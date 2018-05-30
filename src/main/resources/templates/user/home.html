@@ -21,24 +21,86 @@
 
 
 <script type="text/javascript">
+function getProductById(){
+	$.ajax({
+		type : "GET",
+		url : "getProductById.htm",
+		contentType: "application/json",
+		data : "id=1",
+		success : function(response) {
+			console.log(response);
+			alert(response);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});	
+	
+}
+
+function agregarProduct() {
+	var expense = new Object();	
+	expense.name = $('#myInput').val();
+	expense.price = $("#price").val();
+	expense.qty = $("#quantity").val();
+	expense.total = expense.qty*expense.price;
+	if(expense.name != null && expense.name != ""){
+	addExpense(expense);
+	}
+
+	}
+function getProductPriceByName(event){
+	setTimeout(function() {
+
+	productName =event.srcElement.value;
+		$.ajax({
+			type : "GET",
+			traditional : true,
+			url : "getProductPriceByName.htm",
+			data : "productName="+productName,
+			success : function(response) {
+	$("#price").val(response);
+
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		}); 
+		}, 100);
+
+	
+	
+	
+}
+function addExpense(expense){
+	$("#productList").append(generateExpenseHtml(expense));
+	
+}
+function generateExpenseHtml(expense){
+
+return '<tr><th scope="row">'.concat($('tr').length ).concat('</th>').concat('<td>').concat(expense.name).concat('</td>').concat('<td>').concat(expense.price).concat('</td>').concat('<td>').concat(expense.qty).concat('</td><td>').concat(expense.total).concat('</td><td><input class="btn btn-md btn-danger btn-block" value="x" type="button" onClick="confirmDeleteRow(this)"/></td></td></tr>');
+}
 	function showQRIntro() {
 		return confirm("Use your camera to take a picture of a QR code.");
 	}
 
 	function openQRCamera(node) {
 		var reader = new FileReader();
+		console.log(node);
 		reader.onload = function() {
 			node.value = "";
 			qrcode.callback = function(res) {
 				if (res instanceof Error) {
 					alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
 				} else {
-					node.parentNode.previousElementSibling.value = res;
+					alert(res);
 				}
 			};
 			qrcode.decode(reader.result);
 		};
 		reader.readAsDataURL(node.files[0]);
+		console.log(reader);
+		
 	}
 	function modalClear() {
 		$('.modal').empty();
@@ -173,7 +235,7 @@
 			</div>
 		</div>
 	</div>
-
+<input type="button" onClick="getProductById()" value="prueba ajax"/>
 	<!-- modal -->
 	<div class="modal" tabindex="-1" role="dialog"></div>
 	<!--fin modal -->
@@ -181,7 +243,6 @@
 		prueba camara	
 			
 			 -->
-	<input type=text class=qrcode-text>
 	<label class=qrcode-text-btn> <input type=file accept="image/*"
 		capture=environment onclick="return showQRIntro();"
 		onchange="openQRCamera(this);" tabindex=-1>
