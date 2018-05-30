@@ -3,16 +3,19 @@ package ar.com.sourcesistemas.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ar.com.sourcesistemas.model.Product;
+import ar.com.sourcesistemas.model.ProductCategory;
 
 @Controller
 public class ProductController {
+
+	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 	private Map<String, Integer> prices = new HashMap<String, Integer>();
 
@@ -23,24 +26,16 @@ public class ProductController {
 		return prices.get(productName).toString();
 	}
 
-	@PostMapping(value = "/user/getProductById")
-	@ResponseBody 
-	public Product getPoruductById2(@RequestBody String id) {
-		System.out.println("id: " + id);
-		Product product = new Product();
-		product.setName("productName");
-		product.setPrice(10);
-
-		return product;
-	}
 	
 	@GetMapping(value = "/user/getProductById")
 	@ResponseBody 
 	public Product getPoruductById(String id) {
 		System.out.println("id: " + id);
+		logger.debug("logeado por debug id= "+id);
 		Product product = new Product();
 		product.setName("productName");
 		product.setPrice(10);
+		product.setProductCategory(ProductCategory.VETERINARIAN);
 
 		return product;
 	}
