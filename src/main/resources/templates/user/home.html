@@ -23,6 +23,31 @@
 
 
 <script type="text/javascript">
+	function facturar() {
+		var productDTO = [];
+		$('.productRow').each(function(index, item) {
+			var product = new Object();
+			product.price = $(item).find('.price').html();
+			product.name = $(item).find('.name').html();
+			product.qty = $(item).find('.qty').html();
+		productDTO.push(product);
+		});
+		$.ajax({
+			type : "POST",
+			url : "doCheck.htm",
+			data : JSON.stringify(productDTO),
+			contentType : "application/json",
+			success : function(response) {
+				console.log(response);
+				alert(response);
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+
+
+	}
 	function getProductById() {
 		$.ajax({
 			type : "GET",
@@ -88,16 +113,16 @@
 	}
 	function generateExpenseHtml(expense) {
 
-		return '<tr><th scope="row">'
+		return '<tr class="productRow"><th scope="row">'
 				.concat($('tr').length)
 				.concat('</th>')
-				.concat('<td>')
+				.concat('<td class="name">')
 				.concat(expense.name)
 				.concat('</td>')
-				.concat('<td>')
+				.concat('<td class="price">')
 				.concat(expense.price)
 				.concat('</td>')
-				.concat('<td>')
+				.concat('<td class="qty">')
 				.concat(expense.qty)
 				.concat('</td><td class="total">')
 				.concat(expense.total)
@@ -133,6 +158,7 @@
 	function deleteRow(something) {
 		other = $(something).closest('tr').remove();
 		console.log(other);
+		calculateTotal();
 	}
 
 	function confirmDeleteRow(row) {
@@ -255,7 +281,7 @@
 				</div>
 
 				<button class="btn btn-md btn-danger btn-block" name="registration"
-					type="Submit">Facturar</button>
+					type="Submit" onClick="facturar()">Facturar</button>
 
 			</div>
 		</div>

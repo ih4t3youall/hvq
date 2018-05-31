@@ -1,14 +1,18 @@
 package ar.com.sourcesistemas.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ar.com.sourcesistemas.dto.ProductDTO;
 import ar.com.sourcesistemas.model.Product;
 import ar.com.sourcesistemas.model.ProductCategory;
 
@@ -20,18 +24,17 @@ public class ProductController {
 	private Map<String, Integer> prices = new HashMap<String, Integer>();
 
 	@GetMapping("/user/getProductPriceByName")
-	@ResponseBody 
+	@ResponseBody
 	public String getProructPriceByName(String productName) {
 		init();
 		return prices.get(productName).toString();
 	}
 
-	
 	@GetMapping(value = "/user/getProductById")
-	@ResponseBody 
+	@ResponseBody
 	public Product getPoruductById(String id) {
 		System.out.println("id: " + id);
-		logger.debug("logeado por debug id= "+id);
+		logger.debug("logeado por debug id= " + id);
 		Product product = new Product();
 		product.setName("productName");
 		product.setPrice(10);
@@ -40,6 +43,18 @@ public class ProductController {
 		return product;
 	}
 
+	@PostMapping(value = "/user/doCheck")
+	@ResponseBody
+	public Product doCheck(@RequestBody List<ProductDTO> productDTO) {
+
+
+		Product product = new Product();
+		product.setName("productName");
+		product.setPrice(10);
+		product.setProductCategory(ProductCategory.VETERINARIAN);
+
+		return product;
+	}
 
 	public void init() {
 		String[] values = { "martin", "florencia", "paradise", "carla", "juan", "lequerica" };
@@ -48,4 +63,3 @@ public class ProductController {
 		}
 	}
 }
-
