@@ -132,7 +132,8 @@
 	}
 	function deleteRow(something) {
 		other = $(something).closest('tr').remove();
-		console.log(other);
+		calculateTotal();
+
 	}
 
 	function confirmDeleteRow(row) {

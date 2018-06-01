@@ -30,4 +30,11 @@ public class Product {
 		this.productCategory = productCategory;
 	}
 
+	@Override
+	public String toString() {
+		return new StringBuilder().append("name: ").append(name).append("price: ").append(price)
+				.append("Product Category: ").append(productCategory.toString()).toString();
+
+	}
+
 }

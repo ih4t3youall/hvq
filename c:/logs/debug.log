@@ -1,0 +1,111 @@
+2018-05-30 21:37:22 - Starting HvqApplication on Martins-MacBook-Pro.local with PID 999 (/Users/lequerica/Documents/workspace/hvq/target/classes started by lequerica in /Users/lequerica/Documents/workspace/hvq)
+2018-05-30 21:37:22 - No active profile set, falling back to default profiles: default
+2018-05-30 21:37:22 - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@62150f9e: startup date [Wed May 30 21:37:22 ART 2018]; root of context hierarchy
+2018-05-30 21:37:22 - HV000001: Hibernate Validator 5.3.6.Final
+2018-05-30 21:37:24 - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$70f6097b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-30 21:37:25 - Tomcat initialized with port(s): 8084 (http)
+2018-05-30 21:37:25 - Starting service [Tomcat]
+2018-05-30 21:37:25 - Starting Servlet Engine: Apache Tomcat/8.5.27
+2018-05-30 21:37:25 - Initializing Spring embedded WebApplicationContext
+2018-05-30 21:37:25 - Mapping filter: 'metricsFilter' to: [/*]
+2018-05-30 21:37:25 - Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-30 21:37:25 - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-30 21:37:25 - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-30 21:37:25 - Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-30 21:37:25 - Mapping filter: 'springSecurityFilterChain' to: [/*]
+2018-05-30 21:37:25 - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2018-05-30 21:37:25 - Mapping filter: 'applicationContextIdFilter' to: [/*]
+2018-05-30 21:37:25 - Mapping servlet: 'dispatcherServlet' to [/]
+2018-05-30 21:37:26 - Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-30 21:37:26 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-30 21:37:26 - HHH000412: Hibernate Core {5.0.12.Final}
+2018-05-30 21:37:26 - HHH000206: hibernate.properties not found
+2018-05-30 21:37:26 - HHH000021: Bytecode provider name : javassist
+2018-05-30 21:37:26 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-30 21:37:27 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-05-30 21:37:27 - HHH000228: Running hbm2ddl schema update
+2018-05-30 21:37:27 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-30 21:37:28 - 
+
+Using default security password: ab3d29de-52fc-4aea-a8a6-5fdb326fb08e
+
+2018-05-30 21:37:28 - Creating filter chain: Ant [pattern='/resources/**'], []
+2018-05-30 21:37:28 - Creating filter chain: Ant [pattern='/static/**'], []
+2018-05-30 21:37:28 - Creating filter chain: Ant [pattern='/css/**'], []
+2018-05-30 21:37:28 - Creating filter chain: Ant [pattern='/js/**'], []
+2018-05-30 21:37:28 - Creating filter chain: Ant [pattern='/images/**'], []
+2018-05-30 21:37:28 - Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6ba060af, org.springframework.security.web.context.SecurityContextPersistenceFilter@1fb6b8fb, org.springframework.security.web.header.HeaderWriterFilter@2e3252, org.springframework.security.web.authentication.logout.LogoutFilter@274bae2c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6003220a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a10c47e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5835e24a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5817f1ca, org.springframework.security.web.session.SessionManagementFilter@671d97bc, org.springframework.security.web.access.ExceptionTranslationFilter@349312d5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7e3ee128]
+2018-05-30 21:37:29 - Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2018-05-30 21:37:29 - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-30 21:37:29 - Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-30 21:37:29 - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2018-05-30 21:37:29 - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-30 21:37:29 - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-30 21:37:29 - Mapped "{[/logfile || /logfile.json],methods=[GET || HEAD]}" onto public void org.springframework.boot.actuate.endpoint.mvc.LogFileMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException,java.io.IOException
+2018-05-30 21:37:29 - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2018-05-30 21:37:29 - Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-30 21:37:29 - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-30 21:37:29 - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-30 21:37:29 - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-30 21:37:29 - Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2018-05-30 21:37:29 - Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2018-05-30 21:37:29 - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-30 21:37:29 - Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2018-05-30 21:37:29 - Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2018-05-30 21:37:29 - Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-30 21:37:29 - Creating filter chain: org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration$LazyEndpointPathRequestMatcher@4afcae7, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6cd2cb2, org.springframework.security.web.context.SecurityContextPersistenceFilter@2f1f9515, org.springframework.security.web.header.HeaderWriterFilter@9205c0a, org.springframework.web.filter.CorsFilter@3a2bb026, org.springframework.security.web.authentication.logout.LogoutFilter@74d22ddd, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@26a45089, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5c8ab9de, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57416e49, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7645e64, org.springframework.security.web.session.SessionManagementFilter@bfe47a8, org.springframework.security.web.access.ExceptionTranslationFilter@18dd7767, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b665a30]
+2018-05-30 21:37:30 - Registering beans for JMX exposure on startup
+2018-05-30 21:37:30 - Registering beans for JMX exposure on startup
+2018-05-30 21:37:30 - Starting beans in phase 0
+2018-05-30 21:37:30 - Located managed bean 'auditEventsEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=auditEventsEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'requestMappingEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=requestMappingEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'environmentEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=environmentEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'healthEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=healthEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'beansEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=beansEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'infoEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=infoEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'loggersEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=loggersEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'metricsEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=metricsEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'traceEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=traceEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'dumpEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=dumpEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'autoConfigurationReportEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=autoConfigurationReportEndpoint]
+2018-05-30 21:37:30 - Located managed bean 'configurationPropertiesReportEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=configurationPropertiesReportEndpoint]
+2018-05-30 21:37:30 - Initializing ProtocolHandler ["http-nio-8084"]
+2018-05-30 21:37:30 - Starting ProtocolHandler ["http-nio-8084"]
+2018-05-30 21:37:30 - Using a shared selector for servlet write/read
+2018-05-30 21:37:30 - Tomcat started on port(s): 8084 (http)
+2018-05-30 21:37:30 - Started HvqApplication in 8.887 seconds (JVM running for 9.645)
+2018-05-30 21:38:02 - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-05-30 21:38:03 - [THYMELEAF] INITIALIZING TEMPLATE ENGINE
+2018-05-30 21:38:03 - [THYMELEAF] INITIALIZING TEMPLATE RESOLVER: org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver
+2018-05-30 21:38:03 - [THYMELEAF] TEMPLATE RESOLVER INITIALIZED OK
+2018-05-30 21:38:03 - [THYMELEAF] INITIALIZING MESSAGE RESOLVER: org.thymeleaf.spring4.messageresolver.SpringMessageResolver
+2018-05-30 21:38:03 - [THYMELEAF] MESSAGE RESOLVER INITIALIZED OK
+2018-05-30 21:38:03 - [THYMELEAF] TEMPLATE ENGINE CONFIGURATION:
+[THYMELEAF] * Cache Factory implementation: org.thymeleaf.cache.StandardCacheManager
+[THYMELEAF] * Template modes:
+[THYMELEAF]     * XML
+[THYMELEAF]     * VALIDXML
+[THYMELEAF]     * LEGACYHTML5
+[THYMELEAF]     * XHTML
+[THYMELEAF]     * VALIDXHTML
+[THYMELEAF]     * HTML5
+[THYMELEAF] * Template resolvers (in order):
+[THYMELEAF]     * org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver
+[THYMELEAF] * Message resolvers (in order):
+[THYMELEAF]     * org.thymeleaf.spring4.messageresolver.SpringMessageResolver
+[THYMELEAF] * Dialect [1 of 2]: org.thymeleaf.spring4.dialect.SpringStandardDialect
+[THYMELEAF]     * Prefix: "th"
+[THYMELEAF] * Dialect [2 of 2]: nz.net.ultraq.thymeleaf.LayoutDialect
+[THYMELEAF]     * Prefix: "layout"
+[THYMELEAF] TEMPLATE ENGINE CONFIGURED OK
+2018-05-30 21:38:03 - [THYMELEAF] TEMPLATE ENGINE INITIALIZED
+2018-05-30 21:38:05 - HHH000397: Using ASTQueryTranslatorFactory
+2018-05-30 21:38:15 - ProductPrice recovered, name: carlaPrice: 3
+2018-05-30 21:40:58 - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@62150f9e: startup date [Wed May 30 21:37:22 ART 2018]; root of context hierarchy
+2018-05-30 21:40:58 - Stopping beans in phase 0
+2018-05-30 21:40:58 - Unregistering JMX-exposed beans on shutdown
+2018-05-30 21:40:58 - Unregistering JMX-exposed beans
+2018-05-30 21:40:58 - Unregistering JMX-exposed beans on shutdown
+2018-05-30 21:40:58 - Closing JPA EntityManagerFactory for persistence unit 'default'

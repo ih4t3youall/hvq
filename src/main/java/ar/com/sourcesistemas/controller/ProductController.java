@@ -20,26 +20,26 @@ public class ProductController {
 	private Map<String, Integer> prices = new HashMap<String, Integer>();
 
 	@GetMapping("/user/getProductPriceByName")
-	@ResponseBody 
+	@ResponseBody
 	public String getProructPriceByName(String productName) {
 		init();
+		logger.info(new StringBuilder().append("ProductPrice recovered, name: ").append(productName).append("Price: ")
+				.append(prices.get(productName).toString()).toString());
 		return prices.get(productName).toString();
 	}
 
-	
 	@GetMapping(value = "/user/getProductById")
-	@ResponseBody 
+	@ResponseBody
 	public Product getPoruductById(String id) {
-		System.out.println("id: " + id);
-		logger.debug("logeado por debug id= "+id);
+
 		Product product = new Product();
 		product.setName("productName");
 		product.setPrice(10);
 		product.setProductCategory(ProductCategory.VETERINARIAN);
+		logger.info("Product recovered:  " + product.toString());
 
 		return product;
 	}
-
 
 	public void init() {
 		String[] values = { "martin", "florencia", "paradise", "carla", "juan", "lequerica" };
@@ -48,4 +48,3 @@ public class ProductController {
 		}
 	}
 }
-
