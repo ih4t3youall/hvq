@@ -24,28 +24,55 @@
 
 <script type="text/javascript">
 	function facturar() {
+
+		cashDebit();
+
+	}
+
+	function doCheck(postNet) {
 		var productDTO = [];
 		$('.productRow').each(function(index, item) {
 			var product = new Object();
 			product.price = $(item).find('.price').html();
 			product.name = $(item).find('.name').html();
 			product.qty = $(item).find('.qty').html();
-		productDTO.push(product);
+			productDTO.push(product);
 		});
+
+		var checkDTO = new Object();
+		checkDTO.postNet = postNet;
+		checkDTO.productsDTO = productDTO;
 		$.ajax({
 			type : "POST",
 			url : "doCheck.htm",
-			data : JSON.stringify(productDTO),
+			data : JSON.stringify(checkDTO),
 			contentType : "application/json",
 			success : function(response) {
 				console.log(response);
-				alert(response);
 			},
 			error : function(e) {
 				console.log(e);
 			}
 		});
+	}
 
+	function cashDebit() {
+		$.confirm({
+			title : 'Confirm!',
+			content : 'Simple confirm!',
+			buttons : {
+				Debito : function() {
+					doCheck(true);
+				},
+				Efectivo : function() {
+					doCheck(false);
+				},
+				Credito : function() {
+					doCheck(true);
+
+				}
+			}
+		});
 
 	}
 	function getProductById() {
@@ -56,7 +83,7 @@
 			data : "id=1",
 			success : function(response) {
 				console.log(response);
-				alert(response);
+				alert(response.name);
 			},
 			error : function(e) {
 				console.log(e);
@@ -97,7 +124,7 @@
 				url : "getProductPriceByName.htm",
 				data : "productName=" + productName,
 				success : function(response) {
-					$("#price").val(response);
+					$("#price").val(response.price);
 
 				},
 				error : function(e) {
