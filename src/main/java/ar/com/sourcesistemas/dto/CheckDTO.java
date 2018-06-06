@@ -5,7 +5,7 @@ import java.util.List;
 public class CheckDTO {
 
 	private List<ProductDTO> productsDTO;
-	private boolean postNet;
+	private String payWith;
 
 	public List<ProductDTO> getProductsDTO() {
 		return productsDTO;
@@ -15,12 +15,12 @@ public class CheckDTO {
 		this.productsDTO = productsDTO;
 	}
 
-	public boolean isPostNet() {
-		return postNet;
+	public String getPayWith() {
+		return payWith;
 	}
 
-	public void setPostNet(boolean postNet) {
-		this.postNet = postNet;
+	public void setPayWith(String payWith) {
+		this.payWith = payWith;
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class CheckDTO {
 					.append(" qty: ").append(product.getQty());
 
 		});
-		return new StringBuilder().append("postNet: ").append(postNet).append(" products: ").append(productString)
+		return new StringBuilder().append("payWith: ").append(payWith).append(" products: ").append(productString)
 				.toString();
 
 	}

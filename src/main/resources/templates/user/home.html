@@ -29,7 +29,7 @@
 
 	}
 
-	function doCheck(postNet) {
+	function doCheck(payWith) {
 		var productDTO = [];
 		$('.productRow').each(function(index, item) {
 			var product = new Object();
@@ -40,7 +40,7 @@
 		});
 
 		var checkDTO = new Object();
-		checkDTO.postNet = postNet;
+		checkDTO.payWith = payWith;
 		checkDTO.productsDTO = productDTO;
 		$.ajax({
 			type : "POST",
@@ -49,6 +49,7 @@
 			contentType : "application/json",
 			success : function(response) {
 				console.log(response);
+				window.location.replace("getCheck");
 			},
 			error : function(e) {
 				console.log(e);
@@ -58,17 +59,20 @@
 
 	function cashDebit() {
 		$.confirm({
-			title : 'Confirm!',
-			content : 'Simple confirm!',
+			title : 'Confirmacion!',
+			content : 'Seleccione con que abonar!',
+			backgroundDismissAnimation : 'glow',
 			buttons : {
 				Debito : function() {
-					doCheck(true);
+					doCheck("debit");
 				},
 				Efectivo : function() {
-					doCheck(false);
+					doCheck("cash");
 				},
 				Credito : function() {
-					doCheck(true);
+					doCheck("credit");
+				},
+				Cancelar : function() {
 
 				}
 			}
@@ -283,7 +287,8 @@
 								<a data-toggle="collapse" href="#collapse1"> Productos</a>
 							</h4>
 						</div>
-						<div id="collapse1" class="panel-collapse collapse">
+						<div id="collapse1"
+							class="panel-collapse collapse table-responsive">
 							<ul class="list-group">
 								<table class="table">
 									<thead>
