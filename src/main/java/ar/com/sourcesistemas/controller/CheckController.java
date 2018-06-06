@@ -17,7 +17,7 @@ import ar.com.sourcesistemas.dto.CheckDTO;
 public class CheckController {
 
 	private Map<String, CheckDTO> userCheck = new HashMap<String, CheckDTO>();
-	private String[] payWith = { "debito", "credito", "cash" };
+	private String[] payWith = { "debito", "credito", "efectivo" };
 
 	@PostMapping("/user/doCheck")
 	@ResponseBody
