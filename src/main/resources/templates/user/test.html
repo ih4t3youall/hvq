@@ -22,71 +22,87 @@
 
 </head>
 <body>
-	<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Precio</th>
-					<th scope="col">Cantidad</th>
-					<th scope="col">Sub Total</th>
-					<th scope="col">Delete</th>
-				</tr>
-			</thead>
-			<tbody id="productList">
-				<tr class="productRow">
-					<th scope="row">1</th>
-					<td class="name">carla</td>
-					<td class="price">3</td>
-					<td class="qty">3</td>
-					<td class="total">9</td>
-					<td><input class="btn btn-md btn-danger btn-block" value="x"
-						type="button" onclick="confirmDeleteRow(this)"></td>
-				</tr>
-			</tbody>
-		</table>
-		<div class="panel-footer">
-			Total:<label id="total"></label>
+	<div class="container">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Precio</th>
+						<th scope="col">Cantidad</th>
+						<th scope="col">Sub Total</th>
+						<th scope="col">Delete</th>
+					</tr>
+				</thead>
+				<tbody id="productList">
+					<tr class="productRow">
+						<th scope="row">1</th>
+						<td class="name">carla</td>
+						<td class="price">3</td>
+						<td class="qty">3</td>
+						<td class="total">9</td>
+						<td><input class="btn btn-md btn-danger btn-block" value="x"
+							type="button" onclick="confirmDeleteRow(this)"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="panel-footer">
+				Total:<label id="total"></label>
+			</div>
 		</div>
+
+
+		<label id="finalPayMethod"
+			th:text="'Paga con: ' + ${checkDTO.payWith}"></label> <br /> <input
+			type="button" value="modificar metodo de pago" class="btn"
+			onClick="modifyPayMethod()" /> <br /> <select id="payMethod"
+			class="form-control" style="display: none; width: 14%;">
+			<option th:each="dropdownValue: ${payWith}"
+				th:value="${dropdownValue}" th:text="${dropdownValue}"></option>
+		</select> 
+				<button class="btn btn-md btn-danger btn-block" name="registration"
+					type="Submit" onClick="facturar()">Facturar</button>
 	</div>
-
-<label>Paga con</label>
-<label th:text="'Paga con: ' + ${checkDTO.payWith}"></label>
-
-	<select>
-		<option th:each="dropdownValue: ${payWith}"
-			th:value="${dropdownValue}"  th:text="${dropdownValue}"></option>
-	</select>
-	
-	
-	<input type="button" onClick="clearAll()" value="limpiar"/>
-
+<input type="button" onClick="clearAll()" value="limpiar" />
+<input type="button" onClick="volver()" value="volver" />
 </body>
 <script type="text/javascript">
-function clearAll(){
-	$.ajax({
-		type : "GET",
-		url : "clearAll",
-		success : function() {
-			alert('all cleared');
-		},
-		error : function(e) {
-			console.log(e);
-		}
-	});	
-	window.location.replace("home"); 
-	
-	
-	
-	
-}
+	function modifyPayMethod() {
 
-$( document ).ready(function() {
-  
-});
+		$("#payMethod").show();
 
+	}
+	function volver(){
+		
+		window.location.replace("home");
+		
+	}
 
+	function clearAll() {
+		$.ajax({
+			type : "GET",
+			url : "clearAll",
+			success : function() {
+				alert('all cleared');
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+		window.location.replace("home");
+
+	}
+
+	$(document).ready(function() {
+		$('#payMethod').on('change', function(e) {
+			var optionSelected = $("option:selected", this);
+			var valueSelected = this.value;
+			$("#finalPayMethod").html("Paga con: " + valueSelected);
+			$("#payMethod").hide();
+		});
+
+	});
 </script>
 
 </html>
