@@ -6,89 +6,25 @@
 <title>Menu de usuario</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--  <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css"> -->
 	<link rel="stylesheet" type="text/css" th:href="@{/css/jquery-confirm/jquery-confirm.css}"/>
-<!-- <link rel="stylesheet" -->
-<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap/bootstrap-custom.css}"/>
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-<!--  <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
 	<script type="text/javascript" th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
-<!--   <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--> 
 	<script type="text/javascript" th:src="@{/js/qr-code/qr_packed.js}"></script>
-<!--  <script
-	src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script> -->
 
 	<script type="text/javascript" th:src="@{/js/jquery-confirm/jquery-confirm.min.js}"></script>
-<!--   <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>-->
 	
-	<!-- simple modal 
-	<link rel="stylesheet" type="text/css" th:href="@{/css/simpleModal.css}"/>
-	-->
+	
+	<!-- source sistemas lybraries -->
+	<script type="text/javascript" th:src="@{/js/sourcesistemas/check.js}"></script>
+	<script type="text/javascript" th:src="@{/js/sourcesistemas/table.js}"></script>
+
+	
 
 
 
 <script type="text/javascript">
-	function facturar() {
-
-		cashDebit();
-
-	}
-
-	function doCheck(payWith) {
-		var productDTO = [];
-		$('.productRow').each(function(index, item) {
-			var product = new Object();
-			product.price = $(item).find('.price').html();
-			product.name = $(item).find('.name').html();
-			product.qty = $(item).find('.qty').html();
-			productDTO.push(product);
-		});
-
-		var checkDTO = new Object();
-		checkDTO.payWith = payWith;
-		checkDTO.productsDTO = productDTO;
-		$.ajax({
-			type : "POST",
-			url : "doCheck.htm",
-			data : JSON.stringify(checkDTO),
-			contentType : "application/json",
-			success : function(response) {
-				console.log(response);
-				window.location.replace("getCheck");
-			},
-			error : function(e) {
-				console.log(e);
-			}
-		});
-	}
-
-	function cashDebit() {
-		$.confirm({
-			title : 'Confirmacion!',
-			content : 'Seleccione con que abonar!',
-			backgroundDismissAnimation : 'glow',
-			buttons : {
-				Debito : function() {
-					doCheck("debito");
-				},
-				Efectivo : function() {
-					doCheck("efectivo");
-				},
-				Credito : function() {
-					doCheck("credito");
-				},
-				Cancelar : function() {
-
-				}
-			}
-		});
-
-	}
+	
 	function getProductById() {
 		$.ajax({
 			type : "GET",
@@ -105,29 +41,9 @@
 		});
 
 	}
-	function calculateTotal() {
-		var calculation = 0;
-		$(".total").each(function(index, item) {
+	
 
-			calculation = +calculation + +item.innerHTML;
 
-		});
-		$("#total").empty("");
-		$("#total").append(calculation);
-
-	}
-
-	function agregarProduct() {
-		var expense = new Object();
-		expense.name = $('#myInput').val();
-		expense.price = $("#price").val();
-		expense.qty = $("#quantity").val();
-		expense.total = expense.qty * expense.price;
-		if (expense.name != null && expense.name != "") {
-			addExpense(expense);
-		}
-
-	}
 	function getProductPriceByName(event) {
 		setTimeout(function() {
 
@@ -148,28 +64,8 @@
 		}, 100);
 
 	}
-	function addExpense(expense) {
-		$("#productList").append(generateExpenseHtml(expense));
-		calculateTotal();
-	}
-	function generateExpenseHtml(expense) {
 
-		return '<tr class="productRow"><th scope="row">'
-				.concat($('tr').length)
-				.concat('</th>')
-				.concat('<td class="name">')
-				.concat(expense.name)
-				.concat('</td>')
-				.concat('<td class="price">')
-				.concat(expense.price)
-				.concat('</td>')
-				.concat('<td class="qty">')
-				.concat(expense.qty)
-				.concat('</td><td class="total">')
-				.concat(expense.total)
-				.concat(
-						'</td><td><input class="btn btn-md btn-danger btn-block" value="x" type="button" onClick="confirmDeleteRow(this)"/></td></td></tr>');
-	}
+
 	function showQRIntro() {
 		return confirm("Use your camera to take a picture of a QR code.");
 	}
@@ -196,33 +92,7 @@
 		$('.modal').empty();
 
 	}
-	function deleteRow(something) {
-		other = $(something).closest('tr').remove();
-		calculateTotal();
-
-	}
-
-	function confirmDeleteRow(row) {
-		$.confirm({
-			title : 'Confirmar!',
-			animationBounce : 2.5,
-			backgroundDismissAnimation : 'glow',
-			content : 'Desea eliminar?',
-			buttons : {
-				borrar : function() {
-					deleteRow(row);
-				},
-				cancel : function() {
-					$.alert('Cancelado!');
-				},
-				edit : function() {
-					$.alert('Editado!');
-
-				}
-			}
-		});
-	}
-
+	
 	function openModal() {
 		modalClear();
 		$.ajax({

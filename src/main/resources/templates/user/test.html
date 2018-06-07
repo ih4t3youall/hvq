@@ -20,6 +20,11 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 
+<!-- source sistemas lybraries -->
+<script type="text/javascript" th:src="@{/js/sourcesistemas/check.js}"></script>
+<script type="text/javascript" th:src="@{/js/sourcesistemas/table.js}"></script>
+
+
 </head>
 <body>
 	<div class="container">
@@ -51,6 +56,10 @@
 				Total:<label id="total"></label>
 			</div>
 		</div>
+		<p>hello</p>
+		  <option th:each="foo : ${productsDTO}" 
+              th:value="${foo.name}" th:text="${foo.name}">My option</option>
+		<p>fin hello</p>
 
 
 		<label id="finalPayMethod"
@@ -60,12 +69,12 @@
 			class="form-control" style="display: none; width: 14%;">
 			<option th:each="dropdownValue: ${payWith}"
 				th:value="${dropdownValue}" th:text="${dropdownValue}"></option>
-		</select> 
-				<button class="btn btn-md btn-danger btn-block" name="registration"
-					type="Submit" onClick="facturar()">Facturar</button>
+		</select>
+		<button class="btn btn-md btn-danger btn-block" name="registration"
+			type="Submit" onClick="facturar()">Facturar</button>
 	</div>
-<input type="button" onClick="clearAll()" value="limpiar" />
-<input type="button" onClick="volver()" value="volver" />
+	<input type="button" onClick="clearAll()" value="limpiar" />
+	<input type="button" onClick="volver()" value="volver" />
 </body>
 <script type="text/javascript">
 	function modifyPayMethod() {
@@ -73,10 +82,10 @@
 		$("#payMethod").show();
 
 	}
-	function volver(){
-		
+	function volver() {
+
 		window.location.replace("home");
-		
+
 	}
 
 	function clearAll() {

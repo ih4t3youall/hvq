@@ -36,6 +36,7 @@ public class CheckController {
 		CheckDTO checkDTO = userCheck.get(principal.getName());
 		mav.addObject("payWith", payWith);
 		mav.addObject("checkDTO", checkDTO);
+		mav.addObject("productsDTO", checkDTO.getProductsDTO());
 
 		return mav;
 	}
