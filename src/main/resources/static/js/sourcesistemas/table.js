@@ -1,14 +1,43 @@
 function calculateTotal() {
-		var calculation = 0;
-		$(".total").each(function(index, item) {
+	var calculation = 0;
+	$(".total").each(function(index, item) {
 
-			calculation = +calculation + +item.innerHTML;
+		calculation = +calculation + +item.innerHTML;
 
-		});
-		$("#total").empty("");
-		$("#total").append(calculation);
+	});
+	$("#total").empty("");
+	$("#total").append(calculation);
 
-	}
+}
+function refreshTable() {
+
+	$.ajax({
+		type : "GET",
+		url : "getExpenses.htm",
+		contentType : "application/json",
+		success : function(checkDTO) {
+			var expense = new Object();
+			console.log(checkDTO);
+			$(checkDTO).each(function(index, item) {
+				console.log(index);
+				$(item.productsDTO).each(function(index, item) {
+					var expense = new Object();
+					expense.name = item.name;
+					expense.price = item.price;
+					expense.qty = item.qty;
+					expense.total = item.qty * item.price;
+					addExpense(expense);
+				});
+
+			});
+
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});
+
+}
 
 
 function agregarProduct() {

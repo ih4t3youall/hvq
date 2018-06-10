@@ -19,7 +19,7 @@ import ar.com.sourcesistemas.dto.CheckDTO;
 public class CheckController {
 
 	private Map<String, CheckDTO> userCheck = new HashMap<String, CheckDTO>();
-	private String[] payWith = { "debito", "credito", "efectivo" };
+	private String[] payWith = { "Seleccione...", "debito", "credito", "efectivo" };
 
 	@PostMapping("/user/doCheck")
 	@ResponseBody
@@ -39,6 +39,12 @@ public class CheckController {
 		mav.addObject("productsDTO", checkDTO.getProductsDTO());
 
 		return mav;
+	}
+
+	@GetMapping("/user/getExpenses")
+	@ResponseBody
+	public CheckDTO getExpensesForUser(Principal principal) {
+		return userCheck.get(principal.getName());
 	}
 
 	@GetMapping("/user/clearAll")

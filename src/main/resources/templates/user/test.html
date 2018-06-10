@@ -6,22 +6,20 @@
 <title>Confirmar Factura</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script
-	src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/jquery-confirm/jquery-confirm.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap/bootstrap-custom.css}" />
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<script type="text/javascript"
+	th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/qr-code/qr_packed.js}"></script>
+<script type="text/javascript"
+	th:src="@{/js/jquery-confirm/jquery-confirm.min.js}"></script>
 
-<!-- source sistemas lybraries -->
-<script type="text/javascript" th:src="@{/js/sourcesistemas/check.js}"></script>
+
 <script type="text/javascript" th:src="@{/js/sourcesistemas/table.js}"></script>
 
 
@@ -41,37 +39,24 @@
 					</tr>
 				</thead>
 				<tbody id="productList">
-					<tr class="productRow">
-						<th scope="row">1</th>
-						<td class="name">carla</td>
-						<td class="price">3</td>
-						<td class="qty">3</td>
-						<td class="total">9</td>
-						<td><input class="btn btn-md btn-danger btn-block" value="x"
-							type="button" onclick="confirmDeleteRow(this)"></td>
-					</tr>
+
 				</tbody>
 			</table>
 			<div class="panel-footer">
 				Total:<label id="total"></label>
 			</div>
 		</div>
-		<p>hello</p>
-		  <option th:each="foo : ${productsDTO}" 
-              th:value="${foo.name}" th:text="${foo.name}">My option</option>
-		<p>fin hello</p>
-
 
 		<label id="finalPayMethod"
 			th:text="'Paga con: ' + ${checkDTO.payWith}"></label> <br /> <input
-			type="button" value="modificar metodo de pago" class="btn"
+			type="button" value="modificar metodo de pago" class=".btn-default"
 			onClick="modifyPayMethod()" /> <br /> <select id="payMethod"
 			class="form-control" style="display: none; width: 14%;">
 			<option th:each="dropdownValue: ${payWith}"
 				th:value="${dropdownValue}" th:text="${dropdownValue}"></option>
 		</select>
 		<button class="btn btn-md btn-danger btn-block" name="registration"
-			type="Submit" onClick="facturar()">Facturar</button>
+			type="Submit" onClick="finish()">Finalizar</button>
 	</div>
 	<input type="button" onClick="clearAll()" value="limpiar" />
 	<input type="button" onClick="volver()" value="volver" />
@@ -107,9 +92,14 @@
 		$('#payMethod').on('change', function(e) {
 			var optionSelected = $("option:selected", this);
 			var valueSelected = this.value;
-			$("#finalPayMethod").html("Paga con: " + valueSelected);
-			$("#payMethod").hide();
+			if (valueSelected != "Seleccione...") {
+				$("#finalPayMethod").html("Paga con: " + valueSelected);
+				$("#payMethod").hide();
+			} else {
+				$("#payMethod").hide();
+			}
 		});
+		refreshTable();
 
 	});
 </script>
