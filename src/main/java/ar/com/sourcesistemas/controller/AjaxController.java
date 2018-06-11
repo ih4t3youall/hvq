@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.com.sourcesistemas.dao.ProductDAO;
 import ar.com.sourcesistemas.hvq.factory.ModalFactory;
 
 @Controller
@@ -13,11 +14,12 @@ public class AjaxController {
 
 	@Autowired
 	private ModalFactory modalFactory;
+	@Autowired
+	private ProductDAO productDAO;
 
 	@RequestMapping(value = "/user/getModal", method = RequestMethod.GET)
 	public ModelAndView getModal(String modalName) {
 		return modalFactory.getModal(modalName);
-
 	}
 
 }

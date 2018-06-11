@@ -76,6 +76,22 @@ function generateExpenseHtml(expense) {
 			.concat(
 					'</td><td><input class="btn btn-md btn-danger btn-block" value="x" type="button" onClick="confirmDeleteRow(this)"/></td></td></tr>');
 }
+function getExpensesFromTable(){
+	
+	var productDTO = [];
+	$('.productRow').each(function(index, item) {
+		var product = new Object();
+		product.price = $(item).find('.price').html();
+		product.name = $(item).find('.name').html();
+		product.qty = $(item).find('.qty').html();
+		productDTO.push(product);
+	});
+
+	var checkDTO = new Object();
+	checkDTO.productsDTO = productDTO;	
+	return checkDTO;
+	
+}
 
 function deleteRow(something) {
 	other = $(something).closest('tr').remove();

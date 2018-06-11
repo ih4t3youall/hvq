@@ -29,8 +29,7 @@ function doCheck(payWith) {
 		url : "doCheck.htm",
 		data : JSON.stringify(checkDTO),
 		contentType : "application/json",
-		success : function(response) {
-			console.log(response);
+		success : function() {
 			window.location.replace("getCheck");
 		},
 		error : function(e) {

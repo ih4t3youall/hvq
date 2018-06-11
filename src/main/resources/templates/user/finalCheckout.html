@@ -47,8 +47,8 @@
 			</div>
 		</div>
 
-		<label id="finalPayMethod"
-			th:text="'Paga con: ' + ${checkDTO.payWith}"></label> <br /> <input
+		<label> Paga con: <label id="finalPayMethod"
+			th:text="${checkDTO.payWith}" id="payWith"></label></label><br /> <input
 			type="button" value="modificar metodo de pago" class=".btn-default"
 			onClick="modifyPayMethod()" /> <br /> <select id="payMethod"
 			class="form-control" style="display: none; width: 14%;">
@@ -63,16 +63,28 @@
 </body>
 <script type="text/javascript">
 	function modifyPayMethod() {
-
 		$("#payMethod").show();
-
 	}
 	function volver() {
-
 		window.location.replace("home");
-
 	}
 
+	function finish(){
+		
+		var  checkDTO = getExpensesFromTable();
+		checkDTO.payWith = $(".payWith").html();
+		$.ajax({
+			type : "GET",
+			url : "finishCheck",
+			success : function() {
+				alert('all done, check the database');
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+		
+	}
 	function clearAll() {
 		$.ajax({
 			type : "GET",
@@ -85,7 +97,6 @@
 			}
 		});
 		window.location.replace("home");
-
 	}
 
 	$(document).ready(function() {
@@ -93,14 +104,13 @@
 			var optionSelected = $("option:selected", this);
 			var valueSelected = this.value;
 			if (valueSelected != "Seleccione...") {
-				$("#finalPayMethod").html("Paga con: " + valueSelected);
+				$("#finalPayMethod").html(valueSelected);
 				$("#payMethod").hide();
 			} else {
 				$("#payMethod").hide();
 			}
 		});
 		refreshTable();
-
 	});
 </script>
 
