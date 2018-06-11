@@ -1,10 +1,15 @@
 package ar.com.sourcesistemas.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -29,6 +34,19 @@ public class ProductDAO {
 			products.put(values[i], product);
 			entityManager.persist(product);
 		}
+	}
+
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public List<Product> getAllProducts() {
+
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Product> q = cb.createQuery(Product.class);
+		Root<Product> c = q.from(Product.class);
+		q.select(c);
+		TypedQuery<Product> query = entityManager.createQuery(q);
+		return query.getResultList();
+
 	}
 
 	@Transactional
