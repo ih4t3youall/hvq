@@ -39,6 +39,7 @@ public class CheckController {
 	public void finishCheck(Principal principal) {
 
 		CheckDTO checkDTO = userCheck.get(principal.getName());
+		
 
 		// TODO complete this
 	}

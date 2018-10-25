@@ -24,6 +24,7 @@ public class ProductDAO {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
 
 	@Transactional
 	public void init() {

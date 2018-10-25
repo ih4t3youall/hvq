@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.com.sourcesistemas.dao.ProductDAO;
 import ar.com.sourcesistemas.model.User;
 import ar.com.sourcesistemas.service.UserService;
 
@@ -19,6 +20,9 @@ public class LoginController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ProductDAO productDAO;
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
 	public ModelAndView login() {
@@ -53,7 +57,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/user/home", method = RequestMethod.GET)
 	public ModelAndView home() {
-		// productDAO.init();
+		 productDAO.init();
 		ModelAndView mav = new ModelAndView("user/home");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
